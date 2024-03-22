@@ -1,4 +1,5 @@
 "use client"
+import { voiceAndSpeechCalculate } from "@/utils/Calculate/voiceAndSpeech";
 import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
@@ -14,7 +15,10 @@ const SpeechForm = () => {
         formState: { errors,isSubmitted },
     } = useForm<Inputs>();
     const [value, setvalue] = useState(0)
-    const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+    const onSubmit: SubmitHandler<Inputs> = (data) => {
+        const speechValue = voiceAndSpeechCalculate(data.voiceTest, data.speechTest)
+        setvalue(speechValue)
+    };
 
     const fields = ["speechTest", "voiceTest"];
 
@@ -41,7 +45,7 @@ const SpeechForm = () => {
                 </div>
             ))}
             <input className="p-3 rounded-md border border-black w-fit" type="submit" />
-            {isSubmitted && <h3>You have {value}% voice disability.</h3>}
+            {isSubmitted && <h3>You have {value.toFixed(2)}% voice disability.</h3>}
         </form>
     );
 };
