@@ -1,3 +1,4 @@
+import {hearingChart} from "@/utils/hearingChart";
 
 
 export const hearingCalculate = (leftEar: number, rightEar: number) => {
