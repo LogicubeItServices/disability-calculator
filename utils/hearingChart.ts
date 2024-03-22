@@ -63,4 +63,5 @@ const hearingChart = (e: number) => {
   if (e == 93) return 96.43;
   if (e == 94) return 98.14;
   if (e == 95) return 100;
+  throw new Error("Invalid hearing value");
 };
