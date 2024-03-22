@@ -1,4 +1,5 @@
 "use client"
+import { hearingCalculate } from "@/utils/Calculate/hearing";
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
@@ -13,7 +14,11 @@ const HearingForm = () => {
         handleSubmit,
         formState: { errors },
     } = useForm<Inputs>();
-    const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+    const onSubmit: SubmitHandler<Inputs> = async (data) => {
+        const earValue = hearingCalculate(data.leftEar,data.rightEar)
+        console.log(earValue);
+        
+    };
 
     const fields = ["leftEar", "rightEar"];
 
