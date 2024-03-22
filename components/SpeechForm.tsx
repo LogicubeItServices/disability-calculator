@@ -3,11 +3,11 @@ import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 type Inputs = {
-    leftEar: number;
-    rightEar: number;
+    speechTest: number;
+    voiceTest: number;
 };
 
-const HearingForm = () => {
+const SpeechForm = () => {
     const {
         register,
         handleSubmit,
@@ -15,7 +15,7 @@ const HearingForm = () => {
     } = useForm<Inputs>();
     const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
 
-    const fields = ["leftEar", "rightEar"];
+    const fields = ["speechTest", "voiceTest"];
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
@@ -44,4 +44,4 @@ const HearingForm = () => {
     );
 };
 
-export default HearingForm;
+export default SpeechForm;
