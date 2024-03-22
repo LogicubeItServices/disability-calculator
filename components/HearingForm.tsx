@@ -1,6 +1,6 @@
 "use client"
 import { hearingCalculate } from "@/utils/Calculate/hearing";
-import React from "react";
+import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 type Inputs = {
@@ -12,12 +12,14 @@ const HearingForm = () => {
     const {
         register,
         handleSubmit,
-        formState: { errors },
+        reset,
+        formState: { errors,isSubmitted },
     } = useForm<Inputs>();
+    const [value, setvalue] = useState<number>(0)
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
         const earValue = hearingCalculate(data.leftEar,data.rightEar)
-        console.log(earValue);
-        
+        setvalue(earValue)
+        reset()
     };
 
     const fields = ["leftEar", "rightEar"];
@@ -37,14 +39,15 @@ const HearingForm = () => {
                         placeholder={`Enter ${field.charAt(0).toUpperCase() + field.slice(1).replace(/([A-Z])/g, " $1")}`}
                     />
                     {errors?.[field as keyof Inputs]?.type === "required" && (
-                        <span>This field is required</span>
+                        <span className="text-red-500 text-xs">This field is required</span>
                     )}
                     {errors?.[field as keyof Inputs]?.type === "pattern" && (
-                        <span>Only numbers are allowed</span>
+                        <span className="text-red-500 text-xs">Only numbers are allowed</span>
                     )}
                 </div>
             ))}
             <input className="p-3 rounded-md border border-black w-fit" type="submit" />
+            {isSubmitted && <h3>You have {value}% hearing disability.</h3>}
         </form>
     );
 };

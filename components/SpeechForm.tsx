@@ -1,5 +1,5 @@
 "use client"
-import React from "react";
+import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 type Inputs = {
@@ -11,8 +11,9 @@ const SpeechForm = () => {
     const {
         register,
         handleSubmit,
-        formState: { errors },
+        formState: { errors,isSubmitted },
     } = useForm<Inputs>();
+    const [value, setvalue] = useState(0)
     const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
 
     const fields = ["speechTest", "voiceTest"];
@@ -40,6 +41,7 @@ const SpeechForm = () => {
                 </div>
             ))}
             <input className="p-3 rounded-md border border-black w-fit" type="submit" />
+            {isSubmitted && <h3>You have {value}% voice disability.</h3>}
         </form>
     );
 };
