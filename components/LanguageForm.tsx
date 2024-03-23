@@ -47,6 +47,9 @@ const LanguageForm = () => {
                     placeholder={`Enter your WAB score Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.`}
                 />
             </div>
+            {errors?.["wabScore"] && (
+                <span className="text-red-500 text-xs">{errors["wabScore"]?.message}</span>
+            )}
             <button className="p-3 rounded-md border border-black w-fit px-10 hover:bg-black transition duration-700 hover:text-white font-medium text-lg" type="submit" >Continue</button>
             {isSubmitSuccessful && <h3>You have {value.toFixed(2)}% voice disability.</h3>}
         </form>
