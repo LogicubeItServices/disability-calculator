@@ -12,15 +12,26 @@ const SpeechForm = () => {
     const {
         register,
         handleSubmit,
-        formState: { errors,isSubmitted },
+        formState: { errors, isSubmitSuccessful },
     } = useForm<Inputs>();
-    const [value, setvalue] = useState(0)
+    const [value, setValue] = useState<number>(0);
+
     const onSubmit: SubmitHandler<Inputs> = (data) => {
-        const speechValue = voiceAndSpeechCalculate(data.voiceTest, data.speechTest)
-        setvalue(speechValue)
+        const speechValue = voiceAndSpeechCalculate(data.voiceTest, data.speechTest);
+        setValue(speechValue);
     };
 
     const fields = ["speechTest", "voiceTest"];
+    const errorMessages = {
+        speechTest: {
+            required: "Speech test value is required",
+            pattern: "Enter a number between 1 and 7",
+        },
+        voiceTest: {
+            required: "Voice test value is required",
+            pattern: "Enter a number between 1 and 7",
+        },
+    };
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
@@ -30,22 +41,30 @@ const SpeechForm = () => {
                     <input
                         type="number"
                         {...register(field as keyof Inputs, {
-                            required: true,
-                            pattern: /^[0-9]+$/,
+                            required: errorMessages[field as keyof Inputs].required,
+                            pattern: {
+                                value: /^[1-7]+$/,
+                                message: errorMessages[field as keyof Inputs].pattern,
+                            },
+                            min: {
+                                value: 1,
+                                message: "Value should be at least 0",
+                            },
+                            max: {
+                                value: 7,
+                                message: "Value should be at most 7",
+                            },
                         })}
                         className="w-full p-3 rounded-md border border-black"
                         placeholder={`Enter ${field.charAt(0).toUpperCase() + field.slice(1).replace(/([A-Z])/g, " $1")}`}
                     />
-                    {errors?.[field as keyof Inputs]?.type === "required" && (
-                        <span>This field is required</span>
-                    )}
-                    {errors?.[field as keyof Inputs]?.type === "pattern" && (
-                        <span>Only numbers are allowed</span>
+                    {errors?.[field as keyof Inputs] && (
+                        <span className="text-red-500 text-xs">{errors[field as keyof Inputs]?.message}</span>
                     )}
                 </div>
             ))}
             <input className="p-3 rounded-md border border-black w-fit" type="submit" />
-            {isSubmitted && <h3>You have {value.toFixed(2)}% voice disability.</h3>}
+            {isSubmitSuccessful && <h3>You have {value.toFixed(2)}% voice disability.</h3>}
         </form>
     );
 };
