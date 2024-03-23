@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import StepProgressBarUnit from "@/components/StepProgressBarUnit";
+import StepProgressBar from "@/components/StepProgressBar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,9 +19,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <main className="grid grid-cols-2 gap-10">
-          <section>step progreess bar</section>
-          <section>{children}</section>
+        <main className="p-20 bg-green-500 w-fit  m-auto">
+        <section className="grid grid-cols-2 ">
+          <div className="">step progreess bar
+          <StepProgressBar/>
+          </div>
+          <div className="bg-white">{children}</div>
+        </section>
         </main>
       </body>
     </html>
