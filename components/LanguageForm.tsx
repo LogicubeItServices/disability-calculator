@@ -42,7 +42,7 @@ const LanguageForm = () => {
                             message: "Enter a number between 1 and 99",
                         },
                         min: {
-                            value: 0,
+                            value: -1,
                             message: "Value should be at least 0",
                         },
                         max: {
@@ -57,7 +57,7 @@ const LanguageForm = () => {
             {errors?.["wabScore"] && (
                 <span className="text-red-500 text-xs">{errors["wabScore"]?.message}</span>
             )}
-            <button className="p-3 rounded-md border border-black w-fit px-10 hover:bg-black transition duration-700 hover:text-white font-medium text-lg" type="submit" >Continue</button>
+            <button className="p-3 rounded-md border border-black w-fit px-10 hover:bg-black transition duration-700 hover:text-white font-medium text-lg" type="submit" >Submit</button>
             {isSubmitSuccessful && <h3>You have {value.toFixed(2)}% language disability.</h3>}
         </form>
     );

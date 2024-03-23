@@ -55,7 +55,7 @@ const SpeechForm = () => {
                                 message: errorMessages[field as keyof Inputs].pattern,
                             },
                             min: {
-                                value: 1,
+                                value: 0,
                                 message: "Value should be at least 0",
                             },
                             max: {
@@ -71,7 +71,7 @@ const SpeechForm = () => {
                     )}
                 </div>
             ))}
-            <button className="p-3 rounded-md border border-gray-500 w-fit px-10 hover:bg-white transition duration-700 hover:text-black font-medium text-lg" type="submit" >Continue</button>
+            <button className="p-3 rounded-md border border-gray-500 w-fit px-10 hover:bg-white transition duration-700 hover:text-black font-medium text-lg" type="submit" >Submit</button>
             {isSubmitSuccessful && <h3>You have {value.toFixed(2)}% voice disability.</h3>}
         </form>
     );

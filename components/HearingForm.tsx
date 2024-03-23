@@ -58,7 +58,7 @@ const HearingForm = () => {
                                 message: errorMessages[field as keyof Inputs].pattern,
                             },
                             min: {
-                                value: 0,
+                                value: -1,
                                 message: "Value should be at least 0",
                             },
                             max: {
@@ -67,14 +67,14 @@ const HearingForm = () => {
                             },
                         })}
                         className="w-full p-3 rounded-md border border-gray-500 bg-black"
-                        placeholder={`Enter ${field.charAt(0).toUpperCase() + field.slice(1).replace(/([A-Z])/g, " $1")}`}
+                        placeholder={`Enter ${field.charAt(0).toUpperCase() + field.slice(1).replace(/([A-Z])/g, " $1")} Score`}
                     />
                     {errors?.[field as keyof Inputs] && (
                         <span className="text-red-500 text-xs">{errors[field as keyof Inputs]?.message}</span>
                     )}
                 </div>
             ))}
-            <button className="p-3 rounded-md border border-gray-500 w-fit px-10 hover:bg-white transition duration-700 hover:text-black font-medium text-lg" type="submit" >Continue</button>
+            <button className="p-3 rounded-md border border-gray-500 w-fit px-10 hover:bg-white transition duration-700 hover:text-black font-medium text-lg" type="submit" >Submit</button>
             {isSubmitSuccessful && <h3>You have {value.toFixed(2)}% hearing disability.</h3>}
         </form>
     );
