@@ -28,7 +28,7 @@ const StepProgressBar = () => {
   console.log("Path:", PathName);
 
   return (
-    <div className="flex flex-col gap-1">
+    <div className="flex flex-col gap-1 max-md:flex-row max-md:items-center max-md:justify-center">
       {DataOfSPB.map((e, i) => (
         <div key={i} className="">
           <StepProgressBarUnit
