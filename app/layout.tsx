@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import StepProgressBarUnit from "@/components/StepProgressBarUnit";
+import { DisabilityContextProvider } from "@/context/DisabilityContext";
 import StepProgressBar from "@/components/StepProgressBar";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -26,7 +26,9 @@ export default function RootLayout({
           <StepProgressBar/>
           </div>
           <div className="bg-black/50  text-white rounded-2xl p-5 w-[80%] h-[80%] max-md:h-[80%] max-xl:h-fit items-center flex  m-auto  py-10">
+          <DisabilityContextProvider>
             <div className="w-full h-fit">{children}</div>
+            </DisabilityContextProvider>
           </div>
         </section>
         </main>

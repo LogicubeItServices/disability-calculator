@@ -1,7 +1,5 @@
-import HearingForm from "@/components/HearingForm";
+import GetCertificate from "@/components/GetCertificate";
 
 export default function Home() {
-  return (
-   <p>page</p>
-  );
+  return <GetCertificate />;
 }
