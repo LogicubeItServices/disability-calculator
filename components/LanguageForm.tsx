@@ -44,7 +44,7 @@ const LanguageForm = () => {
                         },
                     })}
                     className="w-full p-3 rounded-md border border-black"
-                    placeholder={`Enter your WAB score Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.`}
+                    placeholder={`Enter your WAB score`}
                 />
             </div>
             {errors?.["wabScore"] && (

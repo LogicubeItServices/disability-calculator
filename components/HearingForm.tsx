@@ -59,7 +59,7 @@ const HearingForm = () => {
                             },
                         })}
                         className="w-full p-3 rounded-md border border-black"
-                        placeholder={`Enter ${field.charAt(0).toUpperCase() + field.slice(1).replace(/([A-Z])/g, " $1")} Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.`}
+                        placeholder={`Enter ${field.charAt(0).toUpperCase() + field.slice(1).replace(/([A-Z])/g, " $1")}`}
                     />
                     {errors?.[field as keyof Inputs] && (
                         <span className="text-red-500 text-xs">{errors[field as keyof Inputs]?.message}</span>
