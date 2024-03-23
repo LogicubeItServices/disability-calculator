@@ -25,7 +25,9 @@ export default function RootLayout({
             <div className="flex flex-col justify-center ">
               <StepProgressBar />
             </div>
+            <DisabilityContextProvider>
             <div className="bg-black/80 text-white rounded-2xl p-5 h-fit m-auto w-full py-10">{children}</div>
+            </DisabilityContextProvider>
           </section>
         </main>
       </body>
