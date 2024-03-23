@@ -44,9 +44,9 @@ const HearingForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5 ">
             {fields.map((field) => (
-                <div key={field}>
+                <div key={field} className="flex flex-col gap-2">
                     <label htmlFor={field} className="text-xl font-medium ">{field.charAt(0).toUpperCase() + field.slice(1).replace(/([A-Z])/g, " $1")} Score</label>
                     <input
                         defaultValue={""}
@@ -66,7 +66,7 @@ const HearingForm = () => {
                                 message: "Value should be at most 95",
                             },
                         })}
-                        className="w-full p-3 rounded-md border border-black"
+                        className="w-full p-3 rounded-md border border-gray-500 bg-black"
                         placeholder={`Enter ${field.charAt(0).toUpperCase() + field.slice(1).replace(/([A-Z])/g, " $1")}`}
                     />
                     {errors?.[field as keyof Inputs] && (
@@ -74,7 +74,7 @@ const HearingForm = () => {
                     )}
                 </div>
             ))}
-            <button className="p-3 rounded-md border border-black w-fit px-10 hover:bg-black transition duration-700 hover:text-white font-medium text-lg" type="submit" >Continue</button>
+            <button className="p-3 rounded-md border border-gray-500 w-fit px-10 hover:bg-white transition duration-700 hover:text-black font-medium text-lg" type="submit" >Continue</button>
             {isSubmitSuccessful && <h3>You have {value.toFixed(2)}% hearing disability.</h3>}
         </form>
     );

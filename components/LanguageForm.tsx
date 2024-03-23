@@ -50,7 +50,7 @@ const LanguageForm = () => {
                             message: "Value should be at most 99",
                         },
                     })}
-                    className="w-full p-3 rounded-md border border-black"
+                    className="w-full p-3 rounded-md border border-gray-500 bg-black"
                     placeholder={`Enter your WAB score`}
                 />
             </div>
