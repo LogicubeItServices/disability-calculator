@@ -1,4 +1,5 @@
 "use client"
+import { useDisabilityContext } from "@/context/DisabilityContext";
 import { voiceAndSpeechCalculate } from "@/utils/Calculate/voiceAndSpeech";
 import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -17,9 +18,14 @@ const SpeechForm = () => {
     } = useForm<Inputs>();
     const [value, setValue] = useState<number>(0);
 
+    const Data = useDisabilityContext()
+
     const onSubmit: SubmitHandler<Inputs> = (data) => {
         const speechValue = voiceAndSpeechCalculate(data.voiceTest, data.speechTest);
         setValue(speechValue);
+        Data.setDisabilityTestDetails({
+            speechTest: speechValue
+        })
         reset()
     };
 
@@ -49,7 +55,7 @@ const SpeechForm = () => {
                                 message: errorMessages[field as keyof Inputs].pattern,
                             },
                             min: {
-                                value: 1,
+                                value: 0,
                                 message: "Value should be at least 0",
                             },
                             max: {
@@ -65,7 +71,7 @@ const SpeechForm = () => {
                     )}
                 </div>
             ))}
-            <button className="p-3 rounded-md border border-gray-500 w-fit px-10 hover:bg-white transition duration-700 hover:text-black font-medium text-lg" type="submit" >Continue</button>
+            <button className="p-3 rounded-md border border-gray-500 w-fit px-10 hover:bg-white transition duration-700 hover:text-black font-medium text-lg" type="submit" >Submit</button>
             {isSubmitSuccessful && <h3>You have {value.toFixed(2)}% voice disability.</h3>}
         </form>
     );
