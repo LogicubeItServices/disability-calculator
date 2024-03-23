@@ -39,9 +39,9 @@ const HearingForm = () => {
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
             {fields.map((field) => (
                 <div key={field}>
-                    <label htmlFor={field}>{field.charAt(0).toUpperCase() + field.slice(1).replace(/([A-Z])/g, " $1")}</label>
+                    <label htmlFor={field} className="text-xl font-medium ">{field.charAt(0).toUpperCase() + field.slice(1).replace(/([A-Z])/g, " $1")} Score</label>
                     <input
-                    defaultValue={""}
+                        defaultValue={""}
                         type="number"
                         {...register(field as keyof Inputs, {
                             required: errorMessages[field as keyof Inputs].required,
@@ -59,14 +59,14 @@ const HearingForm = () => {
                             },
                         })}
                         className="w-full p-3 rounded-md border border-black"
-                        placeholder={`Enter ${field.charAt(0).toUpperCase() + field.slice(1).replace(/([A-Z])/g, " $1")}`}
+                        placeholder={`Enter ${field.charAt(0).toUpperCase() + field.slice(1).replace(/([A-Z])/g, " $1")} Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.`}
                     />
                     {errors?.[field as keyof Inputs] && (
                         <span className="text-red-500 text-xs">{errors[field as keyof Inputs]?.message}</span>
                     )}
                 </div>
             ))}
-            <input className="p-3 rounded-md border border-black w-fit" type="submit" />
+            <button className="p-3 rounded-md border border-black w-fit px-10 hover:bg-black transition duration-700 hover:text-white font-medium text-lg" type="submit" >Continue</button>
             {isSubmitSuccessful && <h3>You have {value.toFixed(2)}% hearing disability.</h3>}
         </form>
     );

@@ -12,6 +12,7 @@ const SpeechForm = () => {
     const {
         register,
         handleSubmit,
+        reset,
         formState: { errors, isSubmitSuccessful },
     } = useForm<Inputs>();
     const [value, setValue] = useState<number>(0);
@@ -19,6 +20,7 @@ const SpeechForm = () => {
     const onSubmit: SubmitHandler<Inputs> = (data) => {
         const speechValue = voiceAndSpeechCalculate(data.voiceTest, data.speechTest);
         setValue(speechValue);
+        reset()
     };
 
     const fields = ["speechTest", "voiceTest"];
@@ -37,7 +39,7 @@ const SpeechForm = () => {
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
             {fields.map((field) => (
                 <div key={field}>
-                    <label htmlFor={field}>{field.charAt(0).toUpperCase() + field.slice(1).replace(/([A-Z])/g, " $1")}</label>
+                    <label htmlFor={field} className="text-xl font-medium ">{field.charAt(0).toUpperCase() + field.slice(1).replace(/([A-Z])/g, " $1")} Score</label>
                     <input
                         type="number"
                         {...register(field as keyof Inputs, {
@@ -56,14 +58,14 @@ const SpeechForm = () => {
                             },
                         })}
                         className="w-full p-3 rounded-md border border-black"
-                        placeholder={`Enter ${field.charAt(0).toUpperCase() + field.slice(1).replace(/([A-Z])/g, " $1")}`}
+                        placeholder={`Enter ${field.charAt(0).toUpperCase() + field.slice(1).replace(/([A-Z])/g, " $1")} Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.`}
                     />
                     {errors?.[field as keyof Inputs] && (
                         <span className="text-red-500 text-xs">{errors[field as keyof Inputs]?.message}</span>
                     )}
                 </div>
             ))}
-            <input className="p-3 rounded-md border border-black w-fit" type="submit" />
+            <button className="p-3 rounded-md border border-black w-fit px-10 hover:bg-black transition duration-700 hover:text-white font-medium text-lg" type="submit" >Continue</button>
             {isSubmitSuccessful && <h3>You have {value.toFixed(2)}% voice disability.</h3>}
         </form>
     );
