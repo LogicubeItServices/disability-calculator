@@ -44,10 +44,11 @@ const HearingForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5 ">
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5  ">
+            <h2 className="text-3xl font-semibold">Hearing</h2>
             {fields.map((field) => (
                 <div key={field} className="flex flex-col gap-2">
-                    <label htmlFor={field} className="text-xl font-medium ">{field.charAt(0).toUpperCase() + field.slice(1).replace(/([A-Z])/g, " $1")} Score</label>
+                    <label htmlFor={field} className="text-xl font-light ">{field.charAt(0).toUpperCase() + field.slice(1).replace(/([A-Z])/g, " $1")} Score</label>
                     <input
                         defaultValue={""}
                         type="number"
@@ -67,7 +68,7 @@ const HearingForm = () => {
                             },
                         })}
                         className="w-full p-3 rounded-md border border-gray-500 bg-black"
-                        placeholder={`Enter ${field.charAt(0).toUpperCase() + field.slice(1).replace(/([A-Z])/g, " $1")} Score`}
+                        placeholder={`Enter ${field.charAt(0).toUpperCase() + field.slice(1).replace(/([A-Z])/g, " $1")} score`}
                     />
                     {errors?.[field as keyof Inputs] && (
                         <span className="text-red-500 text-xs">{errors[field as keyof Inputs]?.message}</span>

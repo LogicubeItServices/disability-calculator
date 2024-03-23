@@ -13,8 +13,8 @@ type propsTypes = {
 
 const StepProgressBarUnit = (props: propsTypes) => {
   return (
-    <Link href={props.href} className="flex flex-col gap-1">
-      <div className="flex gap-2 items-center">
+    <Link href={props.href} className="flex flex-col gap-1 max-md:flex-row max-md:justify-center max-md:items-center">
+      <div className="flex gap-2 items-center ">
         <div
           className={`text-white bg-black p-1  rounded-full transition-all ease-linear duration-400 ${props.progressIconCN}`}
         >
@@ -28,13 +28,13 @@ const StepProgressBarUnit = (props: propsTypes) => {
           />
         </div>
         <p
-          className={` underline transition-all ease-linear duration-400 text-gray-200 ${props.progressTitleCN}`}
+          className={` underline transition-all ease-linear duration-400 text-gray-200 max-md:hidden ${props.progressTitleCN}`}
         >
           {props.title}
         </p>
       </div>
       <div
-        className={`w-[0.5rem] h-[5rem] bg-black rounded-full ml-[0.95rem] ${props.progressLineCN}`}
+        className={`w-[0.5rem] h-[5rem]  bg-black rounded-full ml-[0.95rem] max-md:w-[5rem] max-md:h-[0.5rem] max-md:ml-0 ${props.progressLineCN}`}
       ></div>
     </Link>
   );

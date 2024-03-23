@@ -42,10 +42,11 @@ const SpeechForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5 ">
+             <h2 className="text-3xl font-semibold">Speech</h2>
             {fields.map((field) => (
-                <div key={field}>
-                    <label htmlFor={field} className="text-xl font-medium ">{field.charAt(0).toUpperCase() + field.slice(1).replace(/([A-Z])/g, " $1")} Score</label>
+                <div key={field} className="flex flex-col gap-2">
+                    <label htmlFor={field} className="text-xl font-light ">{field.charAt(0).toUpperCase() + field.slice(1).replace(/([A-Z])/g, " $1")} Score</label>
                     <input
                         type="number"
                         {...register(field as keyof Inputs, {

@@ -29,9 +29,10 @@ const LanguageForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
-            <div>
-                <label htmlFor='wabScore' className="text-xl font-medium ">WAB Score</label>
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5 ">
+             <h2 className="text-3xl font-semibold">Language</h2>
+            <div className="flex flex-col gap-2">
+                <label htmlFor='wabScore' className="text-xl font-light ">WAB Score</label>
                 <input
                     defaultValue={""}
                     type="number"
