@@ -1,4 +1,5 @@
 "use client"
+import { useDisabilityContext } from "@/context/DisabilityContext";
 import { voiceAndSpeechCalculate } from "@/utils/Calculate/voiceAndSpeech";
 import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -17,9 +18,14 @@ const SpeechForm = () => {
     } = useForm<Inputs>();
     const [value, setValue] = useState<number>(0);
 
+    const Data = useDisabilityContext()
+
     const onSubmit: SubmitHandler<Inputs> = (data) => {
         const speechValue = voiceAndSpeechCalculate(data.voiceTest, data.speechTest);
         setValue(speechValue);
+        Data.setDisabilityTestDetails({
+            speechTest: speechValue
+        })
         reset()
     };
 

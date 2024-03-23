@@ -1,4 +1,5 @@
 "use client"
+import { useDisabilityContext } from "@/context/DisabilityContext";
 import { hearingCalculate } from "@/utils/Calculate/hearing";
 import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -17,10 +18,17 @@ const HearingForm = () => {
     } = useForm<Inputs>();
     const [value, setValue] = useState<number>(0);
 
+    const Data = useDisabilityContext()
+
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
         const earValue = hearingCalculate(data.leftEar, data.rightEar);
         setValue(earValue);
+        Data.setDisabilityTestDetails({
+            hearingTest: earValue
+        })
         reset();
+        console.log(Data.disabilityTestDetails.hearingTest);
+
     };
 
     const fields = ["leftEar", "rightEar"];
