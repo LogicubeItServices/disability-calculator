@@ -1,14 +1,14 @@
 "use client"
-import { hearingCalculate } from "@/utils/Calculate/hearing";
+import { voiceAndSpeechCalculate } from "@/utils/Calculate/voiceAndSpeech";
 import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 type Inputs = {
-    leftEar: number;
-    rightEar: number;
+    speechTest: number;
+    voiceTest: number;
 };
 
-const HearingForm = () => {
+const SpeechForm = () => {
     const {
         register,
         handleSubmit,
@@ -17,21 +17,21 @@ const HearingForm = () => {
     } = useForm<Inputs>();
     const [value, setValue] = useState<number>(0);
 
-    const onSubmit: SubmitHandler<Inputs> = async (data) => {
-        const earValue = hearingCalculate(data.leftEar, data.rightEar);
-        setValue(earValue);
-        reset();
+    const onSubmit: SubmitHandler<Inputs> = (data) => {
+        const speechValue = voiceAndSpeechCalculate(data.voiceTest, data.speechTest);
+        setValue(speechValue);
+        reset()
     };
 
-    const fields = ["leftEar", "rightEar"];
+    const fields = ["speechTest", "voiceTest"];
     const errorMessages = {
-        leftEar: {
-            required: "Left ear value is required",
-            pattern: "Enter a number between 0 and 95",
+        speechTest: {
+            required: "Speech test value is required",
+            pattern: "Enter a number between 1 and 7",
         },
-        rightEar: {
-            required: "Right ear value is required",
-            pattern: "Enter a number between 0 and 95",
+        voiceTest: {
+            required: "Voice test value is required",
+            pattern: "Enter a number between 1 and 7",
         },
     };
 
@@ -41,21 +41,20 @@ const HearingForm = () => {
                 <div key={field}>
                     <label htmlFor={field} className="text-xl font-medium ">{field.charAt(0).toUpperCase() + field.slice(1).replace(/([A-Z])/g, " $1")} Score</label>
                     <input
-                        defaultValue={""}
                         type="number"
                         {...register(field as keyof Inputs, {
                             required: errorMessages[field as keyof Inputs].required,
                             pattern: {
-                                value: /^[0-9]+$/,
+                                value: /^[1-7]+$/,
                                 message: errorMessages[field as keyof Inputs].pattern,
                             },
                             min: {
-                                value: 0,
+                                value: 1,
                                 message: "Value should be at least 0",
                             },
                             max: {
-                                value: 95,
-                                message: "Value should be at most 95",
+                                value: 7,
+                                message: "Value should be at most 7",
                             },
                         })}
                         className="w-full p-3 rounded-md border border-black"
@@ -67,9 +66,9 @@ const HearingForm = () => {
                 </div>
             ))}
             <button className="p-3 rounded-md border border-black w-fit px-10 hover:bg-black transition duration-700 hover:text-white font-medium text-lg" type="submit" >Continue</button>
-            {isSubmitSuccessful && <h3>You have {value.toFixed(2)}% hearing disability.</h3>}
+            {isSubmitSuccessful && <h3>You have {value.toFixed(2)}% voice disability.</h3>}
         </form>
     );
 };
 
-export default HearingForm;
+export default SpeechForm;

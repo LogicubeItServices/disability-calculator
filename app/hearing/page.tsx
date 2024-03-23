@@ -1,9 +1,8 @@
+import HearingForm from '@/components/HearingForm'
 import React from 'react'
 
 const page = () => {
-  return (
-    <div>page</div>
-  )
+  return <HearingForm />
 }
 
 export default page
