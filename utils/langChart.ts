@@ -1,4 +1,4 @@
-const langChart = (unitWAB: number, tensWAB: number) => {
+export const langChart = (unitWAB: number, tensWAB: number) => {
   if (unitWAB === 0 && tensWAB === 0) return 100;
   if (unitWAB === 0 && tensWAB === 1) return 89.3;
   if (unitWAB === 0 && tensWAB === 2) return 78.6;
