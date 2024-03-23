@@ -18,13 +18,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <main className="p-20 bg-green-500 w-fit  m-auto">
-        <section className="grid grid-cols-2 ">
-          <div className="">step progreess bar
+      <body className={`${inter.className} h-screen flex items-center justify-center bg-black`}>
+        <main className="p-20 bg-gradient-to-br from-[#7DD930] to-[#9DD011] w-[80vw] h-[80vh] rounded-3xl">
+        <section className="grid grid-cols-[0.5fr,1.5fr] h-full ">
+          <div className="flex flex-col justify-center ">
           <StepProgressBar/>
           </div>
-          <div className="bg-white">{children}</div>
+          <div className="bg-black/80 text-white rounded-2xl p-5 h-fit m-auto w-full py-10">{children}</div>
         </section>
         </main>
       </body>
