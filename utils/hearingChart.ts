@@ -1,4 +1,4 @@
-const hearingChart = (e: number) => {
+export const hearingChart = (e: number) => {
   if (e >= 0 && e <= 25) return 0;
   if ([26, 27, 28, 29, 30, 31, 32, 33].includes(e)) return 1;
   if (e == 34) return 2;
