@@ -1,5 +1,5 @@
-import GetCertificate from "@/components/GetCertificate";
+import { redirect } from "next/navigation";
 
 export default function Home() {
-  return <GetCertificate />;
+return redirect("/hearing")
 }
