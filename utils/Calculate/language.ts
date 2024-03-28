@@ -9,6 +9,6 @@ export const languageCalculate = (wab: number) => {
 
   const ArrayOfWAB = stringWAB.split("");
   const tensWAB = parseInt(ArrayOfWAB[0]);
-  const unitWAB = parseInt(ArrayOfWAB[1]);
+  const unitWAB = parseInt(ArrayOfWAB.at(-1)!);
   return langChart(unitWAB, tensWAB);
 };
