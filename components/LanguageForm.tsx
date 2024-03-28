@@ -1,7 +1,7 @@
 "use client"
-import { useDisabilityContext } from "@/context/DisabilityContext";
 import { languageCalculate } from "@/utils/Calculate/language";
-import React, { useState } from "react";
+import { getPationDataType } from "@/utils/getPationtDataType";
+import React, { useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 type Inputs = {
@@ -9,6 +9,14 @@ type Inputs = {
 };
 
 const LanguageForm = () => {
+    const [local, setlocal] = useState<getPationDataType | null>(null)
+
+    useEffect(() => {
+        const abc = JSON.parse(localStorage.getItem('patientData')!)
+        setlocal(abc)
+        console.log(abc);
+
+    }, [])
     const {
         register,
         handleSubmit,
@@ -16,25 +24,25 @@ const LanguageForm = () => {
         formState: { errors, isSubmitSuccessful },
     } = useForm<Inputs>();
     const [value, setValue] = useState<number>(0);
-
-    const Data = useDisabilityContext()
-
     const onSubmit: SubmitHandler<Inputs> = (data) => {
         const languageValue = languageCalculate(data.wabScore);
         setValue(languageValue);
-        Data.setDisabilityTestDetails({
-            languageTest: languageValue
-        })
+        localStorage.setItem("patientData", JSON.stringify({
+            ...local, language: {
+                wabScore: data.wabScore,
+                result: languageValue
+            }
+        }))
         reset()
     };
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5 ">
-             <h2 className="text-3xl font-semibold">Language</h2>
+            <h2 className="text-3xl font-semibold">Language</h2>
             <div className="flex flex-col gap-2">
                 <label htmlFor='wabScore' className="text-xl font-light ">WAB Score</label>
                 <input
-                    defaultValue={""}
+                    defaultValue={local?.language?.wabScore}
                     type="number"
                     {...register('wabScore', {
                         required: "Speech test value is required",
@@ -59,7 +67,7 @@ const LanguageForm = () => {
                 <span className="text-red-500 text-xs">{errors["wabScore"]?.message}</span>
             )}
             <button className="p-3 rounded-md border border-black w-fit px-10 hover:bg-black transition duration-700 hover:text-white font-medium text-lg" type="submit" >Submit</button>
-            {isSubmitSuccessful && <h3>You have {value.toFixed(2)}% language disability.</h3>}
+            {isSubmitSuccessful ? <h3>You have {value.toFixed(2)}% language disability.</h3> : <h3> You have  {local?.language?.result}% language disability.</h3>}
         </form>
     );
 };

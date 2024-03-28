@@ -1,7 +1,7 @@
 "use client"
-import { useDisabilityContext } from "@/context/DisabilityContext";
 import { hearingCalculate } from "@/utils/Calculate/hearing";
-import React, { useState } from "react";
+import { getPationDataType } from "@/utils/getPationtDataType";
+import React, { useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 type Inputs = {
@@ -10,6 +10,13 @@ type Inputs = {
 };
 
 const HearingForm = () => {
+    const [local, setlocal] = useState<getPationDataType | null>(null)
+
+    useEffect(() => {
+        const abc = JSON.parse(localStorage.getItem('patientData')!)
+        setlocal(abc)
+    }, [])
+
     const {
         register,
         handleSubmit,
@@ -18,16 +25,18 @@ const HearingForm = () => {
     } = useForm<Inputs>();
     const [value, setValue] = useState<number>(0);
 
-    const Data = useDisabilityContext()
 
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
         const earValue = hearingCalculate(data.leftEar, data.rightEar);
         setValue(earValue);
-        Data.setDisabilityTestDetails({
-            hearingTest: earValue
-        })
+        localStorage.setItem("patientData", JSON.stringify({
+            hearing: {
+                leftear: data.leftEar,
+                rightear: data.rightEar,
+                result: earValue
+            }
+        }))
         reset();
-        console.log(Data.disabilityTestDetails.hearingTest);
 
     };
 
@@ -36,10 +45,12 @@ const HearingForm = () => {
         leftEar: {
             required: "Left ear value is required",
             pattern: "Enter a number between 0 and 95",
+            defaultValue: local?.hearing?.leftear
         },
         rightEar: {
             required: "Right ear value is required",
             pattern: "Enter a number between 0 and 95",
+            defaultValue: local?.hearing?.rightear
         },
     };
 
@@ -50,7 +61,7 @@ const HearingForm = () => {
                 <div key={field} className="flex flex-col gap-2">
                     <label htmlFor={field} className="text-xl font-light ">{field.charAt(0).toUpperCase() + field.slice(1).replace(/([A-Z])/g, " $1")} Score</label>
                     <input
-                        defaultValue={""}
+                        defaultValue={errorMessages[field as keyof Inputs].defaultValue}
                         type="number"
                         {...register(field as keyof Inputs, {
                             required: errorMessages[field as keyof Inputs].required,
@@ -76,7 +87,7 @@ const HearingForm = () => {
                 </div>
             ))}
             <button className="p-3 rounded-md border border-gray-500 w-fit px-10 hover:bg-white transition duration-700 hover:text-black font-medium text-lg" type="submit" >Submit</button>
-            {isSubmitSuccessful && <h3>You have {value.toFixed(2)}% hearing disability.</h3>}
+            {isSubmitSuccessful ? <h3>You have {value.toFixed(2)}% hearing disability.</h3> : <h3>You have {local?.hearing?.result}% hearing disability.</h3>}
         </form>
     );
 };
