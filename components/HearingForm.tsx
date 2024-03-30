@@ -135,7 +135,10 @@ const HearingForm = () => {
       ) : null}
       <div className="flex flex-col gap-5 divide-y-2">
         <h3 className="font-semibold">How did we get the score</h3>
-        <p className="text-sm text-gray-200 p-3">
+        <div className="text-sm text-gray-200 p-3 flex gap-3">
+        <div className="flex justify-center items-center">
+          Percentage of Hearing impairment =
+        </div>
           <div className="flex flex-col divide-y-2 w-max">
             <span>
               ((Better ear % of hearing disability x 5) + ( Poorer ear % of
@@ -143,7 +146,7 @@ const HearingForm = () => {
             </span>
             <span className="text-center">6</span>
           </div>
-        </p>
+        </div>
         {patientData && (
           <>
             <p className="text-sm flex flex-col text-gray-200 p-3">
@@ -154,17 +157,20 @@ const HearingForm = () => {
                   getBetterEar(patientData?.leftear, patientData?.rightear)
                 )}
                 %
+                {" - "} {patientData?.leftear > patientData?.rightear?"Right Ear":"Left Ear"}
                 <br />
                 Poor Ear :{" "}
                 {getWorseEarValue(
                   getWorseEar(patientData?.leftear, patientData?.rightear)
-                )}
+                  )}
                 %
+                {" - "}   {patientData?.leftear < patientData?.rightear?"Right Ear":"Left Ear"}
               </span>
             </p>
             <p className="text-sm text-gray-200 p-3">
               Step 2 :
-              <div className="flex flex-col divide-y-2 w-max">
+              <div className="flex gap-2">
+                <div className="flex flex-col divide-y-2 w-max">
                 <span>
                   ((
                   {getBetterEarValue(
@@ -177,6 +183,10 @@ const HearingForm = () => {
                   ))
                 </span>
                 <span className="text-center">6</span>
+                </div>
+              <div className="h-full flex justify-center items-center ">
+                = { patientData.result}%
+              </div>
               </div>
             </p>
           </>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import StepProgressBar from "@/components/StepProgressBar";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,7 +26,10 @@ export default function RootLayout({
         </span> 
         as per notication of the Ministry of Social Justice and Empowerment, Government of India. <br />
         dated 4th January, 2018.
-        <br /></h1>
+        <br />
+        <Link href={"/pdfs/source.pdf"} className="text-black-500 font-bold underline-offset-2 underline">Source of Data</Link>
+        <br />
+        </h1>
           <section className="grid grid-cols-[0.2fr,1.8fr] h-full max-md:h-[70%]  max-md:flex  max-md:flex-col max-md:justify-evenly ">
             <div className="flex flex-col justify-center max-md:h-fit ">
               <StepProgressBar />
