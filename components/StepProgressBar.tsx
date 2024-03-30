@@ -8,19 +8,19 @@ const StepProgressBar = () => {
     {
       id: 1,
       icon: "/static/SVGs/ear-svgrepo-com.svg",
-      name: "Hearing",
+      name: "HEARING IMPAIRMENT",
       href: "/hearing",
     },
     {
       id: 2,
       icon: "/static/SVGs/voice-svgrepo-com.svg",
-      name: "Speech",
+      name: "Speech Disability",
       href: "/speech",
     },
     {
       id: 3,
       icon: "/static/SVGs/language-svgrepo-com.svg",
-      name: "Language",
+      name: "Language Disability",
       href: "/language",
     },
   ];
