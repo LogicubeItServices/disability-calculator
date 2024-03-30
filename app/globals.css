@@ -16,3 +16,7 @@
   }
 }
 
+.verticalText{
+  writing-mode: vertical-lr;
+  text-orientation: sideways-right;
+}
