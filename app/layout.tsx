@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import StepProgressBar from "@/components/StepProgressBar";
 import Link from "next/link";
+import { BreadCrumbs } from "@/components/BreadCrumbs";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,26 +19,33 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} min-h-screen flex items-center justify-center bg-black p-4`}>
-        <main className="p-20 bg-gradient-to-br from-[#BBE1FA] to-[#0F4C75] w-[80vw] min-h-[80vh]  rounded-3xl  max-md:p-3 max-md:h-[90vh] max-md:w-[90vw] max-lg:p-10">
-          <h1 className="text-sm max-md:mb-10 capitalize">
-       <span className="text-xl font-bold">
-        Welcome to disability calculator for hearing impairment and speech and language disability <br />
-        </span> 
-        as per notication of the Ministry of Social Justice and Empowerment, Government of India. <br />
-        dated 4th January, 2018.
-        <br />
-        <Link href={"/pdfs/source.pdf"} className="text-black-500 font-bold underline-offset-2 underline">Source of Data</Link>
-        <br />
-        </h1>
-          <section className="grid grid-cols-[0.2fr,1.8fr] h-full max-md:h-[70%]  max-md:flex  max-md:flex-col max-md:justify-evenly ">
-            <div className="flex flex-col justify-center max-md:h-fit ">
-              <StepProgressBar />
-            </div>
-            <div className="bg-black/50  text-white rounded-2xl p-5 w-[90%] mx-auto min-h-[80%] max-md:min-h-[80%] max-xl:h-fit items-center flex  m-auto  py-10">
-              <div className="w-full h-fit">{children}</div>
-            </div>
-          </section>
+      <body
+        className={`${inter.className} min-h-screen flex items-center justify-center bg-black p-4 gap-4`}
+      >
+        <main className="container bg-gradient-to-br from-[#BBE1FA] to-[#0F4C75]   rounded-3xl flex items-center justify-center flex-col gap-5 max-md:p-5 p-14">
+          <div className="text-sm flex flex-col gap-3 capitalize w-full">
+            <h1 className="text-2xl  font-bold">
+              Welcome to disability calculator for hearing impairment and speech
+              and language disability
+            </h1>
+            <span>
+              as per notication of the Ministry of Social Justice and
+              Empowerment, Government of India.
+            </span>
+            <span>dated 4th January, 2018.</span>
+
+            <Link
+              href={"/pdfs/source.pdf"}
+              className=" font-bold underline-offset-2 underline"
+            >
+              Source of Data
+            </Link>
+            <br />
+        <BreadCrumbs />
+          </div>
+          <div className="w-full  p-3 border-gray-500 rounded-md">
+            {children}
+          </div>
         </main>
       </body>
     </html>

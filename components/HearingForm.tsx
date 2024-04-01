@@ -63,14 +63,14 @@ const HearingForm = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col gap-5   "
+      className="flex flex-col gap-5   w-full whitespace-break-spaces "
     >
-      <h2 className="text-xl font-semibold">
+      <h2 className="text-lg font-semibold">
         HEARING IMPAIRMENT (DEAF AND HARD OF HEARING)
       </h2>
       <div className="font-light">
-        <span className="font-semibold">Definition:</span>
-        <ul className="flex flex-col">
+        <span className="font-normal">Definition:</span>
+        <ul className="flex flex-col text-sm">
           <li>
             (a) &quot;Deaf&quot; means persons having 70 DB hearing loss in
             speech frequencies in both ears;
@@ -111,7 +111,7 @@ const HearingForm = () => {
                 message: "Value should be at most 95",
               },
             })}
-            className="w-full p-3 rounded-md border border-gray-500 bg-black"
+            className="w-full p-3 rounded-md border border-gray-500  text-white bg-black"
             placeholder={`Enter ${
               field.charAt(0).toUpperCase() +
               field.slice(1).replace(/([A-Z])/g, " $1")
