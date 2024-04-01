@@ -55,19 +55,23 @@ const SpeechForm = () => {
       onSubmit={handleSubmit(onSubmit)}
       className="flex flex-col gap-5 "
     >
-      <h2 className="text-3xl font-semibold">Speech Disability </h2>
-      <p className="text-sm">
-        Definition: &quot;Speech and language disability&quot; means a permanent
+      <h2 className="text-lg uppercase font-semibold">Speech Disability </h2>
+      <p className="text-sm flex flex-col">
+      <span className="font-bold">
+      Definition:</span>
+      <span>
+       &quot;Speech and language disability&quot; means a permanent
         disability arising out of conditions such as laryngectomy or aphasia
         affecting one or more components of speech and language due to organic
         or neurological causes
+      </span>
       </p>
       <div>
-        <h3 className="font-semibold">
+        <h3 className="text-lg uppercase font-semibold">
           Conditions affecting Speech Components for which Speech Disability
           certificate can be issued
         </h3>
-        <ul className="list-disc px-5 text-white/80">
+        <ul className="list-disc px-5 text-sm">
           <li> Laryngectomy </li>
           <li> Glossectomy </li>
           <li> Bilateral vocal cord paralysis </li>
@@ -104,7 +108,7 @@ const SpeechForm = () => {
                 message: "Value should be at most 7",
               },
             })}
-            className="w-full p-3 rounded-md border border-gray-500 bg-black"
+            className="w-full p-3 rounded-md border border-gray-500 bg-black text-white"
             placeholder={`Enter ${
               field.charAt(0).toUpperCase() +
               field.slice(1).replace(/([A-Z])/g, " $1")
