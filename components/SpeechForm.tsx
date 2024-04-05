@@ -125,10 +125,10 @@ const SpeechForm = () => {
         className="p-3 rounded-md border border-gray-500 w-fit px-10 hover:bg-white transition duration-700 hover:text-black font-medium text-lg"
         type="submit"
       >
-        Submit
+        Caclulate
       </button>
       {isSubmitSuccessful && (
-        <h3>You have {value.toFixed(2)}% voice disability.</h3>
+        <h3 className={" p-3  rounded-md bg-white/30 font-bold  "}>Result: You have {value.toFixed(2)}% voice disability.</h3>
       )}
       <h3 className="font-semibold">How did we get the score</h3>
       <div className="text-sm text-gray-200 p-3 flex gap-3">

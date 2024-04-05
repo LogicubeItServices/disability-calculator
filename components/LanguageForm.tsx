@@ -109,7 +109,7 @@ const LanguageForm = () => {
         Submit
       </button>
       {isSubmitSuccessful && (
-        <h3>You have {value.toFixed(2)}% language disability.</h3>
+          <h3 className={" p-3  rounded-md bg-white/30 font-bold  "}>Result: You have {value.toFixed(2)}% language disability.</h3>
       )}
       <div className="border p-2 flex flex-col gap-4">
         <div className="text-center text-sm ">

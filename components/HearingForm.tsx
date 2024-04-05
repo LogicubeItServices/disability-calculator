@@ -131,7 +131,7 @@ const HearingForm = () => {
         Submit
       </button>
       {isSubmitSuccessful ? (
-        <h3>You have {value.toFixed(2)}% hearing impairment.</h3>
+          <h3 className={" p-3  rounded-md bg-white/30 font-bold  "}>Result: You have {value.toFixed(2)}% hearing impairment.</h3>
       ) : null}
       <div className="flex flex-col gap-5 divide-y-2">
         <h3 className="font-semibold">How did we get the score</h3>
