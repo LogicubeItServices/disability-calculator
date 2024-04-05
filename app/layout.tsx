@@ -32,7 +32,7 @@ export default function RootLayout({
               as per notication of the Ministry of Social Justice and
               Empowerment, Government of India.
             </span>
-            <span>dated 4th January, 2018.</span>
+            <span>dated March 2024.</span>
 
             <Link
               href={"/pdfs/source2024.pdf"}
