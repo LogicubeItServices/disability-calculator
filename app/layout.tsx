@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import StepProgressBar from "@/components/StepProgressBar";
 import Link from "next/link";
 import { BreadCrumbs } from "@/components/BreadCrumbs";
+import Head from "next/head";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,10 +20,27 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Head>
+        <Script id="google-analytics">
+          {`(function(w,d,s,l,i){w[l] = w[l] || [];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-W8C5PH6P');`}
+        </Script>
+      </Head>
       <body
         className={`${inter.className} min-h-screen flex items-center justify-center bg-black p-4 gap-4`}
       >
-        <main className="container bg-gradient-to-br from-[#BBE1FA] to-[#0F4C75]   rounded-3xl flex items-center justify-center flex-col gap-5 max-md:p-5 p-14">
+         <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-W8C5PH6P"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          ></iframe>
+        </noscript>
+        <main className="container bg-gradient-to-br from-[#BBE1FA] to-[#0F4C75] rounded-3xl flex items-center justify-center flex-col gap-5 max-md:p-5 p-14">
           <div className="text-sm flex flex-col gap-3 capitalize w-full">
             <h1 className="text-2xl  font-bold">
               Welcome to disability calculator for hearing impairment and speech
@@ -41,7 +59,7 @@ export default function RootLayout({
               Source of Data
             </Link>
             <br />
-        <BreadCrumbs />
+            <BreadCrumbs />
           </div>
           <div className="w-full  p-3 border-gray-500 rounded-md">
             {children}
