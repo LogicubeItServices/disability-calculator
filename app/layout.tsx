@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 import { BreadCrumbs } from "@/components/BreadCrumbs";
-import Head from "next/head";
 import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -21,10 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-      <Script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-9BT13N9VXR"
-        ></Script>
+      <Script async src="https://www.googletagmanager.com/gtag/js?id=G-9BT13N9VXR"/>
         <Script id="google-analytics">
           {
             `window.dataLayer = window.dataLayer || [];
